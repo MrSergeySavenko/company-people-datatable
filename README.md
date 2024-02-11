@@ -1,46 +1,65 @@
-# Getting Started with Create React App
+## API
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Спецификация метода API - [https://kode-frontend-team.stoplight.io/docs/koder-stoplight/e981f97438300-get-users-list](https://kode-frontend-team.stoplight.io/docs/koder-stoplight/e981f97438300-get-users-list)
 
-## Available Scripts
+### Получить всех пользователей
 
-In the project directory, you can run:
+```javascript
+const options = {
+    method: 'GET',
+    headers: { 'Content-Type': 'application/json' },
+};
+fetch('https://stoplight.io/mocks/kode-frontend-team/koder-stoplight/86566464/users?__example=all', options)
+    .then((response) => response.json())
+    .then((response) => console.log(response))
+    .catch((err) => console.error(err));
+```
 
-### `npm start`
+### Получить пользователей определённого департамента
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+```javascript
+const options = {
+    method: 'GET',
+    headers: { 'Content-Type': 'application/json' },
+};
+fetch(
+    'https://stoplight.io/mocks/kode-frontend-team/koder-stoplight/86566464/users?__example=frontend',
+    options
+)
+    .then((response) => response.json())
+    .then((response) => console.log(response))
+    .catch((err) => console.error(err));
+```
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+> Параметр `__example` может принимать одно из значений:
+> `android` `ios` `design` `management` `qa` `back_office` `frontend` `hr` `pr` `backend` `support` `analytics`
 
-### `npm test`
+### Пример запроса для тестирования на разных данных (генерируется автоматически при каждом запросе)
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+```javascript
+const options = {
+    method: 'GET',
+    headers: { 'Content-Type': 'application/json' },
+};
 
-### `npm run build`
+fetch('https://stoplight.io/mocks/kode-frontend-team/koder-stoplight/86566464/users?__dynamic=true', options)
+    .then((response) => response.json())
+    .then((response) => console.log(response))
+    .catch((err) => console.error(err));
+```
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Запрос, который вернёт ошибку с http кодом 500
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+```javascript
+const options = {
+    method: 'GET',
+    headers: { 'Content-Type': 'application/json' },
+};
+fetch(
+    'https://stoplight.io/mocks/kode-frontend-team/koder-stoplight/86566464/users?__code=500&__dynamic=true',
+    options
+)
+    .then((response) => response.json())
+    .then((response) => console.log(response))
+    .catch((err) => console.error(err));
+```
