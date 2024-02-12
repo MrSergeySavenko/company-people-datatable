@@ -1,0 +1,45 @@
+.wrapper {
+    width: 1224px;
+    height: 24px;
+    margin: 0 auto;
+    padding: 8px 12px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    border-radius: 16px;
+    background-color: rgb(247, 247, 248);
+}
+
+.serchImg {
+    width: 20px;
+    height: 20px;
+    margin-right: 10px;
+    background-image: url('../../../public/SerchImg.svg');
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.input {
+    width: 1158px;
+    background-color: rgb(247, 247, 248);
+    font-family: Inter;
+    font-size: 15px;
+    font-weight: 500;
+    line-height: 20px;
+    margin-right: 10px;
+    border: none;
+    outline: none;
+
+    &::placeholder {
+        color: rgb(195, 195, 198);
+    }
+}
+
+.burgerMenu {
+    width: 20px;
+    height: 12px;
+    background-image: url('../../../public/BurgerMenu.svg');
+    background-size: cover;
+    background-repeat: no-repeat;
+}
