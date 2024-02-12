@@ -9,7 +9,7 @@ const initialState: IDataState = {
 };
 
 export const paopleDataSlice = createSlice({
-    name: 'coPeapleDataTable',
+    name: 'coPeapleData',
     initialState: initialState,
     reducers: {
         dataFetch(state: Draft<IDataState>) {
