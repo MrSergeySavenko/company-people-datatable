@@ -10,9 +10,16 @@ export interface IData {
     phone: string;
 }
 
+export interface ISort {
+    name: string;
+    position: string;
+}
+
 export interface IDataState {
     isLoading: boolean;
     isError: boolean;
     error: string;
     data: Array<IData> | null;
+    sorting: Array<ISort>;
+    activeId: number;
 }

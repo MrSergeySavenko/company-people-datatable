@@ -6,6 +6,15 @@ const initialState: IDataState = {
     isLoading: false,
     isError: false,
     error: '',
+    sorting: [
+        { name: 'Все', position: 'all' },
+        { name: 'Designers', position: 'designer' },
+        { name: 'Analysts', position: 'analytics' },
+        { name: 'Managers', position: 'management' },
+        { name: 'iOS', position: 'ios' },
+        { name: 'Android', position: 'android' },
+    ],
+    activeId: 0,
 };
 
 export const paopleDataSlice = createSlice({
@@ -20,6 +29,9 @@ export const paopleDataSlice = createSlice({
         },
         dataFetchSuccess(state: Draft<IDataState>, action: PayloadAction<Array<IData>>) {
             return { ...state, isLoading: false, data: action.payload };
+        },
+        getActiveId(state, action: PayloadAction<number>) {
+            return { ...state, activeId: action.payload };
         },
     },
 });
