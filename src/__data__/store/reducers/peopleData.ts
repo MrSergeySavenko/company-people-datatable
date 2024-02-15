@@ -8,7 +8,7 @@ const initialState: IDataState = {
     error: '',
     sorting: [
         { name: 'Все', position: 'all' },
-        { name: 'Designers', position: 'designer' },
+        { name: 'Designers', position: 'design' },
         { name: 'Analysts', position: 'analytics' },
         { name: 'Managers', position: 'management' },
         { name: 'iOS', position: 'ios' },
@@ -17,7 +17,7 @@ const initialState: IDataState = {
     activeId: 0,
 };
 
-export const paopleDataSlice = createSlice({
+export const peopleDataSlice = createSlice({
     name: 'coPeapleData',
     initialState: initialState,
     reducers: {
@@ -36,4 +36,4 @@ export const paopleDataSlice = createSlice({
     },
 });
 
-export default paopleDataSlice.reducer;
+export default peopleDataSlice.reducer;

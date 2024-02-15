@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { SSortingWrapper } from './SortingItem.style';
 import { useDispatch, useSelector } from 'react-redux';
-import { paopleDataSlice } from '../../__data__/store/reducers';
+import { peopleDataSlice } from '../../__data__/store/reducers';
 import { RootState } from '../../__data__/store/store';
+import { fetchData } from '../../__data__/store/actions/actions';
 
 interface IProp {
     children: string;
@@ -13,18 +14,23 @@ interface IProp {
 export const SortingItem: React.FC<IProp> = ({ children, linkPosition, id }) => {
     const [active, setActive] = useState(false);
 
-    const { activeId } = useSelector((state: RootState) => state.coPeapleData);
+    const { activeId } = useSelector((state: RootState) => state.coPeopleData);
 
     const dispatch = useDispatch();
 
-    const activeChange = () => (activeId === id ? setActive(true) : setActive(false));
+    const changrActive = () => (activeId === id ? setActive(true) : setActive(false));
+
+    const getSortData = () => {
+        dispatch(peopleDataSlice.actions.getActiveId(id));
+        dispatch(fetchData(linkPosition) as any);
+    };
 
     useEffect(() => {
-        activeChange();
+        changrActive();
     }, [activeId]);
 
     return (
-        <SSortingWrapper isActive={active} onClick={() => dispatch(paopleDataSlice.actions.getActiveId(id))}>
+        <SSortingWrapper isActive={active} onClick={getSortData}>
             {children}
         </SSortingWrapper>
     );

@@ -6,7 +6,7 @@ import { ISort } from '../../__data__/models/coPeopleDataModels';
 import { SortingItem } from '../SortingItem/SortingItem';
 
 export const SortingBlock: React.FC = () => {
-    const { sorting } = useSelector((state: RootState) => state.coPeapleData);
+    const { sorting } = useSelector((state: RootState) => state.coPeopleData);
 
     const sortRender = () =>
         sorting.map((item: ISort, id: number) => {

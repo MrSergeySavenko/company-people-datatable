@@ -1,8 +1,8 @@
 import { combineReducers } from '@reduxjs/toolkit';
 
-import coPeapleData from './coPepleData';
-import { paopleDataSlice } from './coPepleData';
+import coPeopleData from './peopleData';
+import { peopleDataSlice } from './peopleData';
 
-const rootReducer = combineReducers({ coPeapleData });
+const rootReducer = combineReducers({ coPeopleData });
 
-export { rootReducer, paopleDataSlice };
+export { rootReducer, peopleDataSlice };

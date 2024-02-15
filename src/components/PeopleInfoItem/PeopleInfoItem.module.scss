@@ -1,0 +1,41 @@
+.wrapper {
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 12px;
+    align-items: center;
+
+    &:last-child {
+        margin-bottom: 0px;
+    }
+}
+
+.image {
+    width: 72px;
+    height: 72px;
+    border-radius: 50%;
+    margin-right: 16px;
+}
+
+.textWrapper {
+    display: flex;
+    flex-direction: column;
+}
+
+.text {
+    color: rgb(5, 5, 16);
+    font-family: Inter;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 20px;
+    letter-spacing: 0px;
+    margin-bottom: 3px;
+}
+
+.underText {
+    color: rgb(85, 85, 92);
+    font-family: Inter, sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    line-height: 20px;
+    letter-spacing: 0px;
+}

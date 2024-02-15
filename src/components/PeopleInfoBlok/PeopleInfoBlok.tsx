@@ -2,11 +2,11 @@ import React, { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../__data__/store/store';
 import { IItemsData } from '../../__data__/models/coPeopleDataModels';
-import { PepleInfoItem } from '../PoepleInfoItem/PepleInfoItem';
-import styles from './PeapleInfoBlock.module.scss';
+import { PepleInfoItem } from '../PeopleInfoItem/PeopleInfoItem';
+import styles from './PeopleInfoBlock.module.scss';
 
 export const PepleInfoBlok: React.FC = () => {
-    const { data } = useSelector((state: RootState) => state.coPeapleData);
+    const { data } = useSelector((state: RootState) => state.coPeopleData);
 
     const pepleRender = () => {
         return data?.items.map((item: IItemsData) => {
