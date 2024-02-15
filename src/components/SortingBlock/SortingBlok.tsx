@@ -1,5 +1,5 @@
 import { useSelector } from 'react-redux';
-import styles from './SortingBlock.module.scss';
+import styles from './SortingBlok.module.scss';
 import React from 'react';
 import { RootState } from '../../__data__/store/store';
 import { ISort } from '../../__data__/models/coPeopleDataModels';

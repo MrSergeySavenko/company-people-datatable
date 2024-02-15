@@ -1,4 +1,4 @@
-export interface IData {
+export interface IItemsData {
     id: string;
     avatarUrl: string;
     firstName: string;
@@ -10,6 +10,10 @@ export interface IData {
     phone: string;
 }
 
+export interface IData {
+    items: Array<IItemsData>;
+}
+
 export interface ISort {
     name: string;
     position: string;
@@ -19,7 +23,7 @@ export interface IDataState {
     isLoading: boolean;
     isError: boolean;
     error: string;
-    data: Array<IData> | null;
+    data: IData | null;
     sorting: Array<ISort>;
     activeId: number;
 }

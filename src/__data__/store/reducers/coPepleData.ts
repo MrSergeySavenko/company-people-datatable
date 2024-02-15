@@ -27,7 +27,7 @@ export const paopleDataSlice = createSlice({
         dataFetchFailure(state: Draft<IDataState>, action: PayloadAction<string>) {
             return { ...state, isLoading: false, isError: true, error: action.payload };
         },
-        dataFetchSuccess(state: Draft<IDataState>, action: PayloadAction<Array<IData>>) {
+        dataFetchSuccess(state: Draft<IDataState>, action: PayloadAction<IData>) {
             return { ...state, isLoading: false, data: action.payload };
         },
         getActiveId(state, action: PayloadAction<number>) {

@@ -2,7 +2,7 @@ import { IData } from '../../models/coPeopleDataModels';
 import { paopleDataSlice } from '../reducers';
 import { AppDispatch } from '../store';
 
-export const fetchDataLow = () => async (dispatch: AppDispatch) => {
+export const fetchData = () => async (dispatch: AppDispatch) => {
     try {
         dispatch(paopleDataSlice.actions.dataFetch());
 
@@ -10,7 +10,7 @@ export const fetchDataLow = () => async (dispatch: AppDispatch) => {
             ' https://stoplight.io/mocks/kode-frontend-team/koder-stoplight/86566464/users?__example=all';
 
         const response = await fetch(url);
-        const data: Array<IData> = await response.json();
+        const data: IData = await response.json();
 
         if (response) {
             dispatch(paopleDataSlice.actions.dataFetchSuccess(data));
