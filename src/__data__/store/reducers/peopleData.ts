@@ -6,15 +6,24 @@ const initialState: IDataState = {
     isLoading: false,
     isError: false,
     error: '',
-    sorting: [
-        { name: 'Все', position: 'all' },
-        { name: 'Designers', position: 'design' },
-        { name: 'Analysts', position: 'analytics' },
-        { name: 'Managers', position: 'management' },
-        { name: 'iOS', position: 'ios' },
-        { name: 'Android', position: 'android' },
+    sorting: [{ name: 'Все', position: 'all' }],
+    transSort: [
+        { name: 'android', reName: 'Android' },
+        { name: 'ios', reName: 'iOS' },
+        { name: 'design', reName: 'Дизайн' },
+        { name: 'management', reName: 'Менеджмент' },
+        { name: 'qa', reName: 'QA' },
+        { name: 'back_office', reName: 'Бэк-офис' },
+        { name: 'frontend', reName: 'Frontend' },
+        { name: 'hr', reName: 'HR' },
+        { name: 'pr', reName: 'PR' },
+        { name: 'backend', reName: 'Backend' },
+        { name: 'support', reName: 'Техподдержка' },
+        { name: 'analytics', reName: 'Аналитика' },
     ],
     activeId: 0,
+    sortWindow: false,
+    sortingName: '',
 };
 
 export const peopleDataSlice = createSlice({
@@ -32,6 +41,29 @@ export const peopleDataSlice = createSlice({
         },
         getActiveId(state, action: PayloadAction<number>) {
             return { ...state, activeId: action.payload };
+        },
+        getSortingItem(state) {
+            return {
+                ...state,
+                sorting: state.sorting.concat(
+                    state.data
+                        ? state.data.items?.map((item) => {
+                              return {
+                                  name:
+                                      state.transSort.find((objName) => objName.name === item.department)
+                                          ?.reName || item.department,
+                                  position: item.department,
+                              };
+                          })
+                        : []
+                ),
+            };
+        },
+        getSortingName(state, action: PayloadAction<string>) {
+            return { ...state, sortingName: action.payload };
+        },
+        changeSortWindow(state: Draft<IDataState>) {
+            return { ...state, sortWindow: !state.sortWindow };
         },
     },
 });

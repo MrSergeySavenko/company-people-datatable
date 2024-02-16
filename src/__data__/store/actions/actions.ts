@@ -2,11 +2,11 @@ import { IData } from '../../models/coPeopleDataModels';
 import { peopleDataSlice } from '../reducers';
 import { AppDispatch } from '../store';
 
-export const fetchData = (link: string) => async (dispatch: AppDispatch) => {
+export const fetchData = () => async (dispatch: AppDispatch) => {
     try {
         dispatch(peopleDataSlice.actions.dataFetch());
 
-        const url = `https://stoplight.io/mocks/kode-frontend-team/koder-stoplight/86566464/users?__example=${link}`;
+        const url = `https://stoplight.io/mocks/kode-frontend-team/koder-stoplight/86566464/users?__dynamic=true`;
 
         const response = await fetch(url);
         const data: IData = await response.json();

@@ -19,11 +19,19 @@ export interface ISort {
     position: string;
 }
 
+export interface ITranslateSort {
+    name: string;
+    reName: string;
+}
+
 export interface IDataState {
     isLoading: boolean;
     isError: boolean;
     error: string;
     data: IData | null;
     sorting: Array<ISort>;
+    transSort: Array<ITranslateSort>;
     activeId: number;
+    sortWindow: boolean;
+    sortingName: string;
 }

@@ -7,11 +7,11 @@ import { fetchData } from '../../__data__/store/actions/actions';
 
 interface IProp {
     children: string;
-    linkPosition: string;
+    position: string;
     id: number;
 }
 
-export const SortingItem: React.FC<IProp> = ({ children, linkPosition, id }) => {
+export const SortingItem: React.FC<IProp> = ({ children, position, id }) => {
     const [active, setActive] = useState(false);
 
     const { activeId } = useSelector((state: RootState) => state.coPeopleData);
@@ -22,7 +22,7 @@ export const SortingItem: React.FC<IProp> = ({ children, linkPosition, id }) => 
 
     const getSortData = () => {
         dispatch(peopleDataSlice.actions.getActiveId(id));
-        dispatch(fetchData(linkPosition) as any);
+        dispatch(peopleDataSlice.actions.getSortingName(position));
     };
 
     useEffect(() => {
