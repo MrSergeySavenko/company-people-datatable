@@ -16,7 +16,7 @@ export interface IData {
 
 export interface ISort {
     name: string;
-    position: string;
+    department: string;
 }
 
 export interface ITranslateSort {
@@ -34,4 +34,5 @@ export interface IDataState {
     activeId: number;
     sortWindow: boolean;
     sortingName: string;
+    sortData: Array<IItemsData> | null;
 }

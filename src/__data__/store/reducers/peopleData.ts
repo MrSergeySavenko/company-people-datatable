@@ -6,7 +6,7 @@ const initialState: IDataState = {
     isLoading: false,
     isError: false,
     error: '',
-    sorting: [{ name: 'Все', position: 'all' }],
+    sorting: [{ name: 'Все', department: 'true' }],
     transSort: [
         { name: 'android', reName: 'Android' },
         { name: 'ios', reName: 'iOS' },
@@ -24,6 +24,7 @@ const initialState: IDataState = {
     activeId: 0,
     sortWindow: false,
     sortingName: '',
+    sortData: null,
 };
 
 export const peopleDataSlice = createSlice({
@@ -42,6 +43,16 @@ export const peopleDataSlice = createSlice({
         getActiveId(state, action: PayloadAction<number>) {
             return { ...state, activeId: action.payload };
         },
+        getSortData(state, action: PayloadAction<string>) {
+            return {
+                ...state,
+                sortData: state.data
+                    ? state.data?.items.filter((item) => {
+                          return item.department === action.payload;
+                      })
+                    : null,
+            };
+        },
         getSortingItem(state) {
             return {
                 ...state,
@@ -52,15 +63,12 @@ export const peopleDataSlice = createSlice({
                                   name:
                                       state.transSort.find((objName) => objName.name === item.department)
                                           ?.reName || item.department,
-                                  position: item.department,
+                                  department: item.department,
                               };
                           })
                         : []
                 ),
             };
-        },
-        getSortingName(state, action: PayloadAction<string>) {
-            return { ...state, sortingName: action.payload };
         },
         changeSortWindow(state: Draft<IDataState>) {
             return { ...state, sortWindow: !state.sortWindow };

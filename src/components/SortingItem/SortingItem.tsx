@@ -21,8 +21,12 @@ export const SortingItem: React.FC<IProp> = ({ children, position, id }) => {
     const changrActive = () => (activeId === id ? setActive(true) : setActive(false));
 
     const getSortData = () => {
+        if (id === 0) {
+            dispatch(peopleDataSlice.actions.getActiveId(id));
+            dispatch(peopleDataSlice.actions.getSortData(''));
+        }
         dispatch(peopleDataSlice.actions.getActiveId(id));
-        dispatch(peopleDataSlice.actions.getSortingName(position));
+        dispatch(peopleDataSlice.actions.getSortData(position));
     };
 
     useEffect(() => {

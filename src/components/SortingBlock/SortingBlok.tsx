@@ -15,7 +15,7 @@ export const SortingBlock: React.FC = () => {
         data
             ? sorting?.map((item: ISort, id: number) => {
                   return (
-                      <SortingItem position={item?.position} id={id}>
+                      <SortingItem position={item?.department} id={id}>
                           {item?.name}
                       </SortingItem>
                   );
