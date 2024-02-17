@@ -7,11 +7,18 @@ import { useDispatch, useSelector } from 'react-redux';
 import { fetchData } from '../../__data__/store/actions/actions';
 import { PepleInfoBlok } from '../../components/PeopleInfoBlok/PeopleInfoBlok';
 import { RootState } from '../../__data__/store/store';
+import { ModalWindow } from '../../components/ModalWindow/ModalWindow';
 
 export const Main: React.FC = () => {
-    const { sortWindow } = useSelector((state: RootState) => state.coPeopleData);
+    const { window } = useSelector((state: RootState) => state.coPeopleData);
 
     const dispatch = useDispatch();
+
+    const windowRender = () => {
+        if (window) {
+            return <ModalWindow />;
+        }
+    };
 
     useEffect(() => {
         dispatch(fetchData() as any);
@@ -23,6 +30,7 @@ export const Main: React.FC = () => {
             <SerchBlock />
             <SortingBlock />
             <PepleInfoBlok />
+            {windowRender()}
         </div>
     );
 };

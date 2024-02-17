@@ -32,7 +32,7 @@ export interface IDataState {
     sorting: Array<ISort>;
     transSort: Array<ITranslateSort>;
     activeId: number;
-    sortWindow: boolean;
+    window: boolean;
     sortingName: string;
     sortData: Array<IItemsData> | null;
 }

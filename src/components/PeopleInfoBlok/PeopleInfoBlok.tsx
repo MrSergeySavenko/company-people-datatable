@@ -9,7 +9,7 @@ export const PepleInfoBlok: React.FC = () => {
     const { data, sortData } = useSelector((state: RootState) => state.coPeopleData);
 
     const peopleRender = () => {
-        if (sortData?.length !== 0 && sortData !== null) {
+        if (sortData?.length !== 0) {
             return sortData?.map((item: IItemsData) => {
                 return (
                     <PepleInfoItem

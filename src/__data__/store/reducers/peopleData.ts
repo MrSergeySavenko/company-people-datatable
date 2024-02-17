@@ -22,7 +22,7 @@ const initialState: IDataState = {
         { name: 'analytics', reName: 'Аналитика' },
     ],
     activeId: 0,
-    sortWindow: false,
+    window: true,
     sortingName: '',
     sortData: null,
 };
@@ -46,6 +46,7 @@ export const peopleDataSlice = createSlice({
         getSortData(state, action: PayloadAction<string>) {
             return {
                 ...state,
+                sortingName: action.payload,
                 sortData: state.data
                     ? state.data?.items.filter((item) => {
                           return item.department === action.payload;
@@ -71,7 +72,7 @@ export const peopleDataSlice = createSlice({
             };
         },
         changeSortWindow(state: Draft<IDataState>) {
-            return { ...state, sortWindow: !state.sortWindow };
+            return { ...state, window: !state.window };
         },
     },
 });
