@@ -31,7 +31,6 @@ export interface IDataState {
     data: IData | null;
     sorting: Array<ISort>;
     transSort: Array<ITranslateSort>;
-    activeId: number;
     window: boolean;
     sortingName: string;
     sortData: Array<IItemsData> | null;

@@ -6,7 +6,7 @@ const initialState: IDataState = {
     isLoading: false,
     isError: false,
     error: '',
-    sorting: [{ name: 'Все', department: 'true' }],
+    sorting: [{ name: 'Все', department: 'all' }],
     transSort: [
         { name: 'android', reName: 'Android' },
         { name: 'ios', reName: 'iOS' },
@@ -21,9 +21,8 @@ const initialState: IDataState = {
         { name: 'support', reName: 'Техподдержка' },
         { name: 'analytics', reName: 'Аналитика' },
     ],
-    activeId: 0,
-    window: true,
-    sortingName: '',
+    window: false,
+    sortingName: 'all',
     sortData: null,
 };
 

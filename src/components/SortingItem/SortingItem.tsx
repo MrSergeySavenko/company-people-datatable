@@ -8,33 +8,22 @@ import { fetchData } from '../../__data__/store/actions/actions';
 interface IProp {
     children: string;
     position: string;
+    isActive: boolean;
     id: number;
 }
 
-export const SortingItem: React.FC<IProp> = ({ children, position, id }) => {
-    const [active, setActive] = useState(false);
-
-    const { activeId } = useSelector((state: RootState) => state.coPeopleData);
-
+export const SortingItem: React.FC<IProp> = ({ children, position, id, isActive }) => {
     const dispatch = useDispatch();
 
-    const changrActive = () => (activeId === id ? setActive(true) : setActive(false));
-
-    const getSortData = () => {
+    const getSort = () => {
         if (id === 0) {
-            dispatch(peopleDataSlice.actions.getActiveId(id));
             dispatch(peopleDataSlice.actions.getSortData(''));
         }
-        dispatch(peopleDataSlice.actions.getActiveId(id));
         dispatch(peopleDataSlice.actions.getSortData(position));
     };
 
-    useEffect(() => {
-        changrActive();
-    }, [activeId]);
-
     return (
-        <SSortingWrapper isActive={active} onClick={getSortData}>
+        <SSortingWrapper isActive={isActive} onClick={getSort}>
             {children}
         </SSortingWrapper>
     );

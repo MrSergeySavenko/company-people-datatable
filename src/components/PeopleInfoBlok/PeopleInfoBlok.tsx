@@ -9,7 +9,7 @@ export const PepleInfoBlok: React.FC = () => {
     const { data, sortData } = useSelector((state: RootState) => state.coPeopleData);
 
     const peopleRender = () => {
-        if (sortData?.length !== 0) {
+        if (sortData?.length !== 0 && sortData !== null) {
             return sortData?.map((item: IItemsData) => {
                 return (
                     <PepleInfoItem
@@ -33,5 +33,6 @@ export const PepleInfoBlok: React.FC = () => {
             });
         }
     };
+
     return <div className={styles.wrapper}>{peopleRender()}</div>;
 };
