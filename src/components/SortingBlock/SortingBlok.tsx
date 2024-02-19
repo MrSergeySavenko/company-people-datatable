@@ -2,7 +2,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import styles from './SortingBlok.module.scss';
 import React, { useEffect, useState } from 'react';
 import { RootState } from '../../__data__/store/store';
-import { ISort } from '../../__data__/models/coPeopleDataModels';
+import { ISort, ITranslateSort } from '../../__data__/models/coPeopleDataModels';
 import { SortingItem } from '../SortingItem/SortingItem';
 import { peopleDataSlice } from '../../__data__/store/reducers';
 
@@ -19,11 +19,29 @@ export const SortingBlock: React.FC = () => {
         }
     };
 
+    const getNoRepeatSorting = () => {
+        if (sorting) {
+            return sorting
+                .reduce(
+                    (prevItem: Array<any>, curItem) => [
+                        ...prevItem,
+                        prevItem.find((v) => v?.name === curItem.name) ? null : curItem,
+                    ],
+                    []
+                )
+                .filter((v) => v);
+        }
+    };
+
     const sortRender = () =>
         data
-            ? sorting?.map((item: ISort, id: number) => {
+            ? getNoRepeatSorting()?.map((item: ISort, sortIndex: number) => {
                   return (
-                      <SortingItem position={item?.department} id={id} isActive={getActive(item?.department)}>
+                      <SortingItem
+                          position={item?.department}
+                          index={sortIndex}
+                          isActive={getActive(item?.department)}
+                      >
                           {item?.name}
                       </SortingItem>
                   );
@@ -33,6 +51,10 @@ export const SortingBlock: React.FC = () => {
     useEffect(() => {
         dispatch(peopleDataSlice.actions.getSortingItem());
     }, [data]);
+
+    useEffect(() => {
+        getNoRepeatSorting();
+    }, [sorting]);
 
     return <div className={styles.wrapper}>{sortRender()}</div>;
 };

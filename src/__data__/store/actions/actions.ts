@@ -6,7 +6,7 @@ export const fetchData = () => async (dispatch: AppDispatch) => {
     try {
         dispatch(peopleDataSlice.actions.dataFetch());
 
-        const url = `https://stoplight.io/mocks/kode-frontend-team/koder-stoplight/86566464/users?__example=all`;
+        const url = `https://stoplight.io/mocks/kode-frontend-team/koder-stoplight/86566464/users?__dynamic=true`;
 
         const response = await fetch(url);
         const data: IData = await response.json();
