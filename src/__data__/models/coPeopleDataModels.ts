@@ -24,6 +24,11 @@ export interface ITranslateSort {
     reName: string;
 }
 
+export interface ITypeOfSort {
+    type: string;
+    text: string;
+}
+
 export interface IDataState {
     isLoading: boolean;
     isError: boolean;
@@ -34,4 +39,7 @@ export interface IDataState {
     window: boolean;
     sortingName: string;
     sortData: Array<IItemsData> | null;
+    activeSorting: string;
+    sortingArray: Array<ITypeOfSort>;
+    inputQuery: string;
 }

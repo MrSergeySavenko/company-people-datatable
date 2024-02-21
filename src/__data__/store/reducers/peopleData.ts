@@ -1,5 +1,5 @@
 import { createSlice, Draft, PayloadAction } from '@reduxjs/toolkit';
-import { IData, IDataState } from '../../models/coPeopleDataModels';
+import { IData, IDataState, IItemsData } from '../../models/coPeopleDataModels';
 
 const initialState: IDataState = {
     data: null,
@@ -24,6 +24,13 @@ const initialState: IDataState = {
     window: false,
     sortingName: 'all',
     sortData: null,
+    activeSorting: '',
+    sortingArray: [
+        { type: '', text: 'Без сортировки' },
+        { type: 'name', text: 'По алфавиту' },
+        { type: 'date', text: 'По дню рождения' },
+    ],
+    inputQuery: '',
 };
 
 export const peopleDataSlice = createSlice({
@@ -38,6 +45,9 @@ export const peopleDataSlice = createSlice({
         },
         dataFetchSuccess(state: Draft<IDataState>, action: PayloadAction<IData>) {
             return { ...state, isLoading: false, data: action.payload };
+        },
+        dataSerch(state, action: PayloadAction<IData>) {
+            return { ...state, data: action.payload };
         },
         getActiveId(state, action: PayloadAction<number>) {
             return { ...state, activeId: action.payload };
@@ -72,6 +82,12 @@ export const peopleDataSlice = createSlice({
         },
         changeSortWindow(state: Draft<IDataState>) {
             return { ...state, window: !state.window };
+        },
+        changeData(state, action: PayloadAction<string>) {
+            return { ...state, activeSorting: action.payload };
+        },
+        setQuery(state, action: PayloadAction<string>) {
+            return { ...state, inputQuery: action.payload };
         },
     },
 });
