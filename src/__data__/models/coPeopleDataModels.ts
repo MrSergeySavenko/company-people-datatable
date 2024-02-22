@@ -10,6 +10,11 @@ export interface IItemsData {
     phone: string;
 }
 
+export interface IGetSortData {
+    sortName: string;
+    sortArray: IData;
+}
+
 export interface IData {
     items: Array<IItemsData>;
 }
@@ -42,4 +47,5 @@ export interface IDataState {
     activeSorting: string;
     sortingArray: Array<ITypeOfSort>;
     inputQuery: string;
+    queryData: IData;
 }

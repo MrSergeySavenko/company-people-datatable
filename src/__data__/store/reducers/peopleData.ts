@@ -1,5 +1,5 @@
 import { createSlice, Draft, PayloadAction } from '@reduxjs/toolkit';
-import { IData, IDataState, IItemsData } from '../../models/coPeopleDataModels';
+import { IData, IDataState, IGetSortData, IItemsData } from '../../models/coPeopleDataModels';
 
 const initialState: IDataState = {
     data: null,
@@ -31,6 +31,7 @@ const initialState: IDataState = {
         { type: 'date', text: 'По дню рождения' },
     ],
     inputQuery: '',
+    queryData: { items: [] },
 };
 
 export const peopleDataSlice = createSlice({
@@ -52,33 +53,35 @@ export const peopleDataSlice = createSlice({
         getActiveId(state, action: PayloadAction<number>) {
             return { ...state, activeId: action.payload };
         },
-        getSortData(state, action: PayloadAction<string>) {
+        getQueryData(state, action: PayloadAction<IData>) {
+            return { ...state, queryData: action.payload };
+        },
+        getSortData(state, action: PayloadAction<IGetSortData>) {
             return {
                 ...state,
-                sortingName: action.payload,
-                sortData: state.data
-                    ? state.data?.items.filter((item) => {
-                          return item.department === action.payload;
-                      })
-                    : null,
+                sortingName: action.payload.sortName,
+                sortData: action.payload.sortArray.items.filter((item) => {
+                    return item.department === action.payload.sortName;
+                }),
             };
         },
-        getSortingItem(state) {
+        getSortingItem(state, action: PayloadAction<IData>) {
             return {
                 ...state,
                 sorting: state.sorting.concat(
-                    state.data
-                        ? state.data.items?.map((item) => {
-                              return {
-                                  name:
-                                      state.transSort.find((objName) => objName.name === item.department)
-                                          ?.reName || item.department,
-                                  department: item.department,
-                              };
-                          })
-                        : []
+                    action.payload.items.map((item) => {
+                        return {
+                            name:
+                                state.transSort.find((objName) => objName.name === item.department)?.reName ||
+                                item.department,
+                            department: item.department,
+                        };
+                    })
                 ),
             };
+        },
+        cleanSortingItem(state) {
+            return { ...state, sorting: [{ name: 'Все', department: 'all' }] };
         },
         changeSortWindow(state: Draft<IDataState>) {
             return { ...state, window: !state.window };

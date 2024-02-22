@@ -1,13 +1,13 @@
 import { useDispatch, useSelector } from 'react-redux';
 import styles from './SortingBlok.module.scss';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { RootState } from '../../__data__/store/store';
-import { ISort, ITranslateSort } from '../../__data__/models/coPeopleDataModels';
+import { ISort } from '../../__data__/models/coPeopleDataModels';
 import { SortingItem } from '../SortingItem/SortingItem';
 import { peopleDataSlice } from '../../__data__/store/reducers';
 
 export const SortingBlock: React.FC = () => {
-    const { sorting, data, sortingName } = useSelector((state: RootState) => state.coPeopleData);
+    const { sorting, sortingName, queryData } = useSelector((state: RootState) => state.coPeopleData);
 
     const dispatch = useDispatch();
 
@@ -34,23 +34,22 @@ export const SortingBlock: React.FC = () => {
     };
 
     const sortRender = () =>
-        data
-            ? getNoRepeatSorting()?.map((item: ISort, sortIndex: number) => {
-                  return (
-                      <SortingItem
-                          position={item?.department}
-                          index={sortIndex}
-                          isActive={getActive(item?.department)}
-                      >
-                          {item?.name}
-                      </SortingItem>
-                  );
-              })
-            : [];
+        getNoRepeatSorting()?.map((item: ISort, sortIndex: number) => {
+            return (
+                <SortingItem
+                    position={item?.department}
+                    index={sortIndex}
+                    isActive={getActive(item?.department)}
+                >
+                    {item?.name}
+                </SortingItem>
+            );
+        });
 
     useEffect(() => {
-        dispatch(peopleDataSlice.actions.getSortingItem());
-    }, [data]);
+        dispatch(peopleDataSlice.actions.cleanSortingItem());
+        dispatch(peopleDataSlice.actions.getSortingItem(queryData));
+    }, [queryData]);
 
     useEffect(() => {
         getNoRepeatSorting();
