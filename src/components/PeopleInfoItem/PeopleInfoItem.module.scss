@@ -21,6 +21,14 @@
     flex-direction: column;
 }
 
+.nameWrapper {
+    width: 300px;
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 3px;
+    text-align: end;
+}
+
 .text {
     color: rgb(5, 5, 16);
     font-family: Inter;
@@ -28,7 +36,17 @@
     font-weight: 500;
     line-height: 20px;
     letter-spacing: 0px;
-    margin-bottom: 3px;
+    margin-right: 4px;
+}
+
+.userTag {
+    color: rgb(151, 151, 155);
+    font-family: Inter;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 18px;
+    letter-spacing: 0px;
+    text-align: end;
 }
 
 .underText {

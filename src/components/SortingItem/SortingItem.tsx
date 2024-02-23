@@ -3,6 +3,7 @@ import { SSortingWrapper } from './SortingItem.style';
 import { useDispatch, useSelector } from 'react-redux';
 import { peopleDataSlice } from '../../__data__/store/reducers';
 import { RootState } from '../../__data__/store/store';
+import { renderDataAfterSort } from '../../__data__/utils/utils';
 
 interface IProp {
     children: string;
@@ -12,7 +13,9 @@ interface IProp {
 }
 
 export const SortingItem: React.FC<IProp> = ({ children, position, index, isActive }) => {
-    const { data, queryData, inputQuery } = useSelector((state: RootState) => state.coPeopleData);
+    const { data, queryData, inputQuery, activeSorting } = useSelector(
+        (state: RootState) => state.coPeopleData
+    );
 
     const dispatch = useDispatch();
 
@@ -26,15 +29,16 @@ export const SortingItem: React.FC<IProp> = ({ children, position, index, isActi
         }
         if (data) {
             if (index === 0) {
-                dispatch(peopleDataSlice.actions.getSortData({ sortName: '', sortArray: data }));
+                dispatch(peopleDataSlice.actions.getSortData({ sortName: '', sortArray: data.items }));
             }
-            dispatch(peopleDataSlice.actions.getSortData({ sortName: position, sortArray: data }));
+            dispatch(peopleDataSlice.actions.getSortData({ sortName: position, sortArray: data.items }));
         }
     };
 
     useEffect(() => {
         if (data) {
-            dispatch(peopleDataSlice.actions.getSortingItem(data));
+            dispatch(peopleDataSlice.actions.getSortingItem(data.items));
+            renderDataAfterSort(data.items, activeSorting);
         }
     }, [data]);
 

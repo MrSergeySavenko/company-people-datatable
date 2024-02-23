@@ -12,7 +12,7 @@ export interface IItemsData {
 
 export interface IGetSortData {
     sortName: string;
-    sortArray: IData;
+    sortArray: Array<IItemsData>;
 }
 
 export interface IData {
@@ -47,5 +47,5 @@ export interface IDataState {
     activeSorting: string;
     sortingArray: Array<ITypeOfSort>;
     inputQuery: string;
-    queryData: IData;
+    queryData: IItemsData[];
 }

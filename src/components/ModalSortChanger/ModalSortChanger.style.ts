@@ -14,12 +14,30 @@ interface SIProp {
     activeType: boolean;
 }
 
+export const SCercalWrapper = styled('div')(() => ({
+    position: 'relative',
+    width: '20px',
+    height: '20px',
+    marginRight: '14px',
+}));
+
 export const SCercal = styled('div')(({ activeType }: SIProp) => ({
     width: '20px',
     height: '20px',
-    border: activeType ? '6px solid rgb(101, 52, 255);' : '2px solid rgb(101, 52, 255)',
+    border: '2px solid rgb(101, 52, 255)',
+    backgroundColor: activeType ? 'rgb(101, 52, 255);' : '#fff',
     borderRadius: '50%',
-    marginRight: '14px',
+}));
+
+export const SHidenCercal = styled('div')(({ activeType }: SIProp) => ({
+    display: activeType ? 'block' : 'none',
+    position: 'absolute',
+    width: '8px',
+    height: '8px',
+    backgroundColor: '#fff',
+    top: '8px',
+    left: '8px',
+    borderRadius: '50%',
 }));
 
 export const SText = styled('p')(() => ({

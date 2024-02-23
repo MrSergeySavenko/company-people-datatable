@@ -1,5 +1,5 @@
 import React from 'react';
-import { SCercal, SSortWrapper, SText } from './ModalSortChanger.style';
+import { SCercal, SCercalWrapper, SHidenCercal, SSortWrapper, SText } from './ModalSortChanger.style';
 import { useDispatch } from 'react-redux';
 import { peopleDataSlice } from '../../__data__/store/reducers';
 
@@ -14,13 +14,17 @@ export const ModalSortChanger: React.FC<IProps> = ({ children, activeType, type 
 
     const activateSorting = () => {
         if (!activeType) {
+            console.log(type);
             return dispatch(peopleDataSlice.actions.changeData(type));
         }
     };
 
     return (
         <SSortWrapper onClick={activateSorting}>
-            <SCercal activeType={activeType} />
+            <SCercalWrapper>
+                <SCercal activeType={activeType} />
+                <SHidenCercal activeType={activeType} />
+            </SCercalWrapper>
             <SText>{children}</SText>
         </SSortWrapper>
     );

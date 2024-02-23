@@ -31,7 +31,7 @@ const initialState: IDataState = {
         { type: 'date', text: 'По дню рождения' },
     ],
     inputQuery: '',
-    queryData: { items: [] },
+    queryData: [],
 };
 
 export const peopleDataSlice = createSlice({
@@ -53,23 +53,23 @@ export const peopleDataSlice = createSlice({
         getActiveId(state, action: PayloadAction<number>) {
             return { ...state, activeId: action.payload };
         },
-        getQueryData(state, action: PayloadAction<IData>) {
+        getQueryData(state, action: PayloadAction<Array<IItemsData>>) {
             return { ...state, queryData: action.payload };
         },
         getSortData(state, action: PayloadAction<IGetSortData>) {
             return {
                 ...state,
                 sortingName: action.payload.sortName,
-                sortData: action.payload.sortArray.items.filter((item) => {
+                sortData: action.payload.sortArray.filter((item) => {
                     return item.department === action.payload.sortName;
                 }),
             };
         },
-        getSortingItem(state, action: PayloadAction<IData>) {
+        getSortingItem(state, action: PayloadAction<Array<IItemsData>>) {
             return {
                 ...state,
                 sorting: state.sorting.concat(
-                    action.payload.items.map((item) => {
+                    action.payload?.map((item) => {
                         return {
                             name:
                                 state.transSort.find((objName) => objName.name === item.department)?.reName ||

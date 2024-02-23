@@ -2,17 +2,20 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../__data__/store/store';
 import { IItemsData } from '../../__data__/models/coPeopleDataModels';
-import { PepleInfoItem } from '../PeopleInfoItem/PeopleInfoItem';
+import { PeopleInfoItem } from '../PeopleInfoItem/PeopleInfoItem';
 import styles from './PeopleInfoBlock.module.scss';
 import { peopleDataSlice } from '../../__data__/store/reducers';
+import { renderDataAfterSort } from '../../__data__/utils/utils';
 
 export const PepleInfoBlok: React.FC = () => {
-    const { data, sortData, inputQuery, queryData } = useSelector((state: RootState) => state.coPeopleData);
+    const { data, sortData, inputQuery, queryData, activeSorting } = useSelector(
+        (state: RootState) => state.coPeopleData
+    );
 
     const dispatch = useDispatch();
 
     const findInObj = (query: string) => {
-        const arr: any = { items: [] };
+        const arr: any = [];
         let counter = 0;
         data?.items.forEach((item: IItemsData) => {
             counter = 1;
@@ -25,7 +28,7 @@ export const PepleInfoBlok: React.FC = () => {
                 ) {
                     if (strItem?.indexOf(query) !== -1 || undefined) {
                         counter = 0;
-                        arr.items.push(item);
+                        arr.push(item);
                     }
                 }
             });
@@ -39,55 +42,34 @@ export const PepleInfoBlok: React.FC = () => {
         findInObj(inputQuery);
     }, [inputQuery]);
 
-    const peopleRender = () => {
+    const returnActualData = () => {
         if (inputQuery.length > 0) {
             if (sortData?.length !== 0 && sortData !== null) {
-                return sortData?.map((item: IItemsData) => {
-                    return (
-                        <PepleInfoItem
-                            url={item.avatarUrl}
-                            firstName={item.firstName}
-                            lastName={item.lastName}
-                            position={item.department}
-                        />
-                    );
-                });
+                return sortData;
             }
-            return queryData?.items.map((item: IItemsData) => {
-                return (
-                    <PepleInfoItem
-                        url={item.avatarUrl}
-                        firstName={item.firstName}
-                        lastName={item.lastName}
-                        position={item.department}
-                    />
-                );
-            });
+            return queryData;
         }
         if (sortData?.length !== 0 && sortData !== null) {
-            return sortData?.map((item: IItemsData) => {
-                return (
-                    <PepleInfoItem
-                        url={item.avatarUrl}
-                        firstName={item.firstName}
-                        lastName={item.lastName}
-                        position={item.department}
-                    />
-                );
-            });
-        } else {
-            return data?.items?.map((item: IItemsData) => {
-                return (
-                    <PepleInfoItem
-                        url={item.avatarUrl}
-                        firstName={item.firstName}
-                        lastName={item.lastName}
-                        position={item.department}
-                    />
-                );
-            });
+            return sortData;
         }
+        if (data) {
+            return data.items;
+        }
+        return [];
     };
+
+    const peopleRender = () =>
+        renderDataAfterSort(returnActualData(), activeSorting)?.map((item: IItemsData) => {
+            return (
+                <PeopleInfoItem
+                    url={item.avatarUrl}
+                    firstName={item.firstName}
+                    lastName={item.lastName}
+                    position={item.department}
+                    userTag={item.userTag}
+                />
+            );
+        });
 
     return <div className={styles.wrapper}>{peopleRender()}</div>;
 };
