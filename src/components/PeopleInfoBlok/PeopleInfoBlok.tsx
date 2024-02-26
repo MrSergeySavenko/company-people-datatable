@@ -59,7 +59,26 @@ export const PepleInfoBlok: React.FC = () => {
     };
 
     const peopleRender = () =>
-        renderDataAfterSort(returnActualData(), activeSorting)?.map((item: IItemsData) => {
+        renderDataAfterSort(returnActualData(), activeSorting)?.map((item: IItemsData, i: number) => {
+            if (activeSorting === 'date' && i > 0) {
+                if (
+                    item.birthday.slice(0, 4) <
+                    renderDataAfterSort(returnActualData(), activeSorting)[i - 1].birthday.slice(0, 4)
+                ) {
+                    return (
+                        <PeopleInfoItem
+                            url={item.avatarUrl}
+                            firstName={item.firstName}
+                            lastName={item.lastName}
+                            position={item.department}
+                            userTag={item.userTag}
+                            date={item.birthday}
+                            activeDateLine={true}
+                        />
+                    );
+                }
+            }
+
             return (
                 <PeopleInfoItem
                     url={item.avatarUrl}
@@ -67,6 +86,7 @@ export const PepleInfoBlok: React.FC = () => {
                     lastName={item.lastName}
                     position={item.department}
                     userTag={item.userTag}
+                    date={item.birthday}
                 />
             );
         });
