@@ -6,9 +6,10 @@ import { PeopleInfoItem } from '../PeopleInfoItem/PeopleInfoItem';
 import styles from './PeopleInfoBlock.module.scss';
 import { peopleDataSlice } from '../../__data__/store/reducers';
 import { renderDataAfterSort } from '../../__data__/utils/utils';
+import { ItemSkeleton } from '../Skeleton/Skeleton';
 
 export const PepleInfoBlok: React.FC = () => {
-    const { data, sortData, inputQuery, queryData, activeSorting } = useSelector(
+    const { data, sortData, inputQuery, queryData, activeSorting, isLoading } = useSelector(
         (state: RootState) => state.coPeopleData
     );
 
@@ -58,8 +59,8 @@ export const PepleInfoBlok: React.FC = () => {
         return [];
     };
 
-    const peopleRender = () =>
-        renderDataAfterSort(returnActualData(), activeSorting)?.map((item: IItemsData, i: number) => {
+    const peopleRender = () => {
+        return renderDataAfterSort(returnActualData(), activeSorting)?.map((item: IItemsData, i: number) => {
             if (activeSorting === 'date' && i > 0) {
                 if (
                     item.birthday.slice(0, 4) <
@@ -90,6 +91,7 @@ export const PepleInfoBlok: React.FC = () => {
                 />
             );
         });
+    };
 
     return <div className={styles.wrapper}>{peopleRender()}</div>;
 };

@@ -8,9 +8,11 @@ import { fetchData } from '../../__data__/store/actions/actions';
 import { PepleInfoBlok } from '../../components/PeopleInfoBlok/PeopleInfoBlok';
 import { RootState } from '../../__data__/store/store';
 import { ModalWindow } from '../../components/ModalWindow/ModalWindow';
+import { SkeletonTheme } from 'react-loading-skeleton';
+import { ItemSkeleton } from '../../components/Skeleton/Skeleton';
 
 export const Main: React.FC = () => {
-    const { window } = useSelector((state: RootState) => state.coPeopleData);
+    const { window, isLoading } = useSelector((state: RootState) => state.coPeopleData);
 
     const dispatch = useDispatch();
 
@@ -25,12 +27,20 @@ export const Main: React.FC = () => {
     }, []);
 
     return (
-        <div className={styles.wrapper}>
-            <TextAria>Поиск</TextAria>
-            <SerchBlock />
-            <SortingBlock />
-            <PepleInfoBlok />
-            {windowRender()}
-        </div>
+        <SkeletonTheme baseColor='#f3f3f6' highlightColor='#fafafa'>
+            <div className={styles.wrapper}>
+                <TextAria>Поиск</TextAria>
+                <SerchBlock />
+                <SortingBlock />
+                {isLoading ? (
+                    Array(8)
+                        .fill(0)
+                        .map((_) => <ItemSkeleton />)
+                ) : (
+                    <PepleInfoBlok />
+                )}
+                {windowRender()}
+            </div>
+        </SkeletonTheme>
     );
 };

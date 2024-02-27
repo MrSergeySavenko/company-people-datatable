@@ -1,6 +1,7 @@
 import { IData } from '../../models/coPeopleDataModels';
 import { peopleDataSlice } from '../reducers';
 import { AppDispatch, AppState } from '../store';
+// import { delayFunc } from '../../utils/utils';
 
 export const fetchData = () => async (dispatch: AppDispatch) => {
     try {
@@ -10,6 +11,8 @@ export const fetchData = () => async (dispatch: AppDispatch) => {
 
         const response = await fetch(url);
         const data: IData = await response.json();
+
+        // await delayFunc(5000);
 
         if (response) {
             dispatch(peopleDataSlice.actions.dataFetchSuccess(data));
