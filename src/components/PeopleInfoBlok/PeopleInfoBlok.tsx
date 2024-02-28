@@ -7,6 +7,7 @@ import styles from './PeopleInfoBlock.module.scss';
 import { peopleDataSlice } from '../../__data__/store/reducers';
 import { renderDataAfterSort } from '../../__data__/utils/utils';
 import { ItemSkeleton } from '../Skeleton/Skeleton';
+import { Navigate, useNavigate } from 'react-router-dom';
 
 export const PepleInfoBlok: React.FC = () => {
     const { data, sortData, inputQuery, queryData, activeSorting, isLoading } = useSelector(
@@ -14,6 +15,12 @@ export const PepleInfoBlok: React.FC = () => {
     );
 
     const dispatch = useDispatch();
+    const navigate = useNavigate();
+
+    const handleRouteMain = (item: IItemsData) => {
+        dispatch(peopleDataSlice.actions.getDetailsItem(item));
+        return navigate('/details');
+    };
 
     const findInObj = (query: string) => {
         const arr: any = [];
@@ -68,6 +75,7 @@ export const PepleInfoBlok: React.FC = () => {
                 ) {
                     return (
                         <PeopleInfoItem
+                            onClick={() => handleRouteMain(item)}
                             url={item.avatarUrl}
                             firstName={item.firstName}
                             lastName={item.lastName}
@@ -82,6 +90,7 @@ export const PepleInfoBlok: React.FC = () => {
 
             return (
                 <PeopleInfoItem
+                    onClick={() => handleRouteMain(item)}
                     url={item.avatarUrl}
                     firstName={item.firstName}
                     lastName={item.lastName}

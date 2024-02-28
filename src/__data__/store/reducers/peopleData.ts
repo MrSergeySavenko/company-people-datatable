@@ -32,6 +32,7 @@ const initialState: IDataState = {
     ],
     inputQuery: '',
     queryData: [],
+    detailsItem: null,
 };
 
 export const peopleDataSlice = createSlice({
@@ -91,6 +92,9 @@ export const peopleDataSlice = createSlice({
         },
         setQuery(state, action: PayloadAction<string>) {
             return { ...state, inputQuery: action.payload };
+        },
+        getDetailsItem(state, action: PayloadAction<IItemsData>) {
+            return { ...state, detailsItem: action.payload };
         },
     },
 });

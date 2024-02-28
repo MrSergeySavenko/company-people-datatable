@@ -48,4 +48,5 @@ export interface IDataState {
     sortingArray: Array<ITypeOfSort>;
     inputQuery: string;
     queryData: IItemsData[];
+    detailsItem: IItemsData | null;
 }

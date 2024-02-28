@@ -3,6 +3,7 @@ import styles from './PeopleInfoItem.module.scss';
 import { getMonth } from '../../__data__/utils/utils';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../__data__/store/store';
+import { Navigate } from 'react-router-dom';
 
 interface IProps {
     url: string;
@@ -12,6 +13,7 @@ interface IProps {
     userTag: string;
     date: string;
     activeDateLine?: boolean;
+    onClick: () => void;
 }
 
 export const PeopleInfoItem: React.FC<IProps> = ({
@@ -22,13 +24,14 @@ export const PeopleInfoItem: React.FC<IProps> = ({
     userTag,
     date,
     activeDateLine,
+    onClick,
 }) => {
     const { activeSorting } = useSelector((state: RootState) => state.coPeopleData);
 
     const realDate = new Date(date);
 
     return (
-        <div className={styles.contentWrapper}>
+        <div className={styles.contentWrapper} onClick={onClick}>
             {activeDateLine ? (
                 <div className={styles.dateLineWrapper}>
                     <div className={styles.dateLine} />

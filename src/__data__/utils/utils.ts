@@ -19,3 +19,7 @@ export const getMonth = (month: number) => {
 
     return arrMonth[month - 1];
 };
+
+export const delayFunc = (ms: number) => {
+    return new Promise((resolve) => setTimeout(resolve, ms));
+};

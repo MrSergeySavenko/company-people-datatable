@@ -10,11 +10,13 @@ import { RootState } from '../../__data__/store/store';
 import { ModalWindow } from '../../components/ModalWindow/ModalWindow';
 import { SkeletonTheme } from 'react-loading-skeleton';
 import { ItemSkeleton } from '../../components/Skeleton/Skeleton';
+import { Navigate, useNavigate } from 'react-router-dom';
 
 export const Main: React.FC = () => {
-    const { window, isLoading } = useSelector((state: RootState) => state.coPeopleData);
+    const { window, isLoading, data } = useSelector((state: RootState) => state.coPeopleData);
 
     const dispatch = useDispatch();
+    const navigate = useNavigate();
 
     const windowRender = () => {
         if (window) {
@@ -23,7 +25,15 @@ export const Main: React.FC = () => {
     };
 
     useEffect(() => {
-        dispatch(fetchData() as any);
+        if (!data) {
+            return navigate('/main');
+        }
+    }, []);
+
+    useEffect(() => {
+        if (!data) {
+            dispatch(fetchData() as any);
+        }
     }, []);
 
     return (
