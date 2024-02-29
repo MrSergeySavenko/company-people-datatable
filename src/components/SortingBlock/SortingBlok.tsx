@@ -5,6 +5,7 @@ import { RootState } from '../../__data__/store/store';
 import { ISort } from '../../__data__/models/coPeopleDataModels';
 import { SortingItem } from '../SortingItem/SortingItem';
 import { peopleDataSlice } from '../../__data__/store/reducers';
+import { uniqueKey } from '../../__data__/utils/utils';
 
 export const SortingBlock: React.FC = () => {
     const { sorting, sortingName, queryData } = useSelector((state: RootState) => state.coPeopleData);
@@ -37,6 +38,7 @@ export const SortingBlock: React.FC = () => {
         getNoRepeatSorting()?.map((item: ISort, sortIndex: number) => {
             return (
                 <SortingItem
+                    key={uniqueKey(item.name, sortIndex)}
                     position={item?.department}
                     index={sortIndex}
                     isActive={getActive(item?.department)}

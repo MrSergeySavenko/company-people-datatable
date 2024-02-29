@@ -5,12 +5,11 @@ import { IItemsData } from '../../__data__/models/coPeopleDataModels';
 import { PeopleInfoItem } from '../PeopleInfoItem/PeopleInfoItem';
 import styles from './PeopleInfoBlock.module.scss';
 import { peopleDataSlice } from '../../__data__/store/reducers';
-import { renderDataAfterSort } from '../../__data__/utils/utils';
-import { ItemSkeleton } from '../Skeleton/Skeleton';
-import { Navigate, useNavigate } from 'react-router-dom';
+import { renderDataAfterSort, uniqueKey } from '../../__data__/utils/utils';
+import { useNavigate } from 'react-router-dom';
 
 export const PepleInfoBlok: React.FC = () => {
-    const { data, sortData, inputQuery, queryData, activeSorting, isLoading } = useSelector(
+    const { data, sortData, inputQuery, queryData, activeSorting } = useSelector(
         (state: RootState) => state.coPeopleData
     );
 
@@ -75,6 +74,7 @@ export const PepleInfoBlok: React.FC = () => {
                 ) {
                     return (
                         <PeopleInfoItem
+                            key={uniqueKey(item.firstName, i)}
                             onClick={() => handleRouteMain(item)}
                             url={item.avatarUrl}
                             firstName={item.firstName}
@@ -90,6 +90,7 @@ export const PepleInfoBlok: React.FC = () => {
 
             return (
                 <PeopleInfoItem
+                    key={uniqueKey(item.firstName, i)}
                     onClick={() => handleRouteMain(item)}
                     url={item.avatarUrl}
                     firstName={item.firstName}

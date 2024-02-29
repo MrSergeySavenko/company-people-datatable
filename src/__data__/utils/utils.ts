@@ -1,4 +1,4 @@
-import { IData, IItemsData } from '../models/coPeopleDataModels';
+import { IItemsData } from '../models/coPeopleDataModels';
 
 type TProp = IItemsData[];
 
@@ -23,3 +23,5 @@ export const getMonth = (month: number) => {
 export const delayFunc = (ms: number) => {
     return new Promise((resolve) => setTimeout(resolve, ms));
 };
+
+export const uniqueKey = (name: any, i: number) => `${name}+${i}`;

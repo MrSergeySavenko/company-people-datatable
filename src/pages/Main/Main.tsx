@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import styles from './Main.module.scss';
 import { TextAria } from '../../components/TextArea/TextArea';
 import { SerchBlock } from '../../components/SearchBlock/SearchBlok';
@@ -10,10 +10,15 @@ import { RootState } from '../../__data__/store/store';
 import { ModalWindow } from '../../components/ModalWindow/ModalWindow';
 import { SkeletonTheme } from 'react-loading-skeleton';
 import { ItemSkeleton } from '../../components/Skeleton/Skeleton';
-import { Navigate, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+import { NotReceivedData } from '../../components/ErrorComponent/NotReceivedData/NotReceivedData';
+import { EmptyQueryData } from '../../components/ErrorComponent/EmptyQueryData/EmptyQueryData';
+import { uniqueKey } from '../../__data__/utils/utils';
 
 export const Main: React.FC = () => {
-    const { window, isLoading, data } = useSelector((state: RootState) => state.coPeopleData);
+    const { window, isLoading, data, isError, queryData } = useSelector(
+        (state: RootState) => state.coPeopleData
+    );
 
     const dispatch = useDispatch();
     const navigate = useNavigate();
@@ -42,10 +47,12 @@ export const Main: React.FC = () => {
                 <TextAria>Поиск</TextAria>
                 <SerchBlock />
                 <SortingBlock />
+                {isError && <NotReceivedData />}
+                {queryData.length === 0 && <EmptyQueryData />}
                 {isLoading ? (
                     Array(8)
                         .fill(0)
-                        .map((_) => <ItemSkeleton />)
+                        .map((_, i: number) => <ItemSkeleton key={uniqueKey('name', i)} />)
                 ) : (
                     <PepleInfoBlok />
                 )}

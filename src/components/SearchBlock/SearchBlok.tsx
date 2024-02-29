@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useRef, useState } from 'react';
 import styles from './SearchBlok.module.scss';
 import { useDispatch, useSelector } from 'react-redux';
 import { peopleDataSlice } from '../../__data__/store/reducers';
@@ -8,7 +8,6 @@ export const SerchBlock: React.FC = () => {
     const { window, inputQuery } = useSelector((state: RootState) => state.coPeopleData);
 
     const [input, setInput] = useState('');
-    const [activeInput, setActiveInput] = useState(false);
 
     const dispatch = useDispatch();
 

@@ -3,7 +3,6 @@ import styles from './PeopleInfoItem.module.scss';
 import { getMonth } from '../../__data__/utils/utils';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../__data__/store/store';
-import { Navigate } from 'react-router-dom';
 
 interface IProps {
     url: string;

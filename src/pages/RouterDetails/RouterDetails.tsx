@@ -1,9 +1,8 @@
 import React, { useEffect } from 'react';
 import styles from './RouterDetails.module.scss';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { RootState } from '../../__data__/store/store';
 import { useNavigate } from 'react-router-dom';
-import { peopleDataSlice } from '../../__data__/store/reducers';
 import moment from 'moment';
 
 export const RouterDetails: React.FC = () => {

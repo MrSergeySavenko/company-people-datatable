@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import styles from './ModalWindow.module.scss';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../__data__/store/store';
@@ -7,7 +7,7 @@ import { ModalSortChanger } from '../ModalSortChanger/ModalSortChanger';
 import { ITypeOfSort } from '../../__data__/models/coPeopleDataModels';
 
 export const ModalWindow: React.FC = () => {
-    const { window, activeSorting, sortingArray } = useSelector((state: RootState) => state.coPeopleData);
+    const { activeSorting, sortingArray } = useSelector((state: RootState) => state.coPeopleData);
 
     const getActiveType = (type: string) => (type === activeSorting ? true : false);
 
