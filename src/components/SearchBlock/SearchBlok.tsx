@@ -19,12 +19,6 @@ export const SerchBlock: React.FC = () => {
         console.log(inputQuery);
     };
 
-    // useEffect(() => {
-    //     const onClick = (e) => {if (inputRef !== null){inputRef.current.contains(e.target)}  || console.log('клик вне компонента')};
-    //     document.addEventListener('click', onClick);
-    //     return () => document.removeEventListener('click', onClick);
-    //   }, []);
-
     return (
         <div className={styles.wrapper}>
             <div className={styles.serchImg} />
