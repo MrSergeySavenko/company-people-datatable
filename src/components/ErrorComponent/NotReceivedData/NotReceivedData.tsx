@@ -11,7 +11,7 @@ export const NotReceivedData: React.FC = () => {
     };
 
     return (
-        <div className={styles.wrapper}>
+        <div db-test='error-window-test' className={styles.wrapper}>
             <div className={styles.img} />
             <p className={styles.text}>Какой-то сверхразум все сломал</p>
             <p className={styles.underText}>Постараемся быстро починить</p>
