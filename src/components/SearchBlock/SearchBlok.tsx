@@ -16,7 +16,6 @@ export const SerchBlock: React.FC = () => {
     const findPeple = (e: any) => {
         setInput(e.target.value);
         dispatch(peopleDataSlice.actions.setQuery(e.target.value));
-        console.log(inputQuery);
     };
 
     return (
@@ -35,7 +34,6 @@ export const SerchBlock: React.FC = () => {
                 className={styles.burgerMenu}
                 onClick={() => {
                     dispatch(peopleDataSlice.actions.changeSortWindow());
-                    console.log(window);
                 }}
             />
         </div>

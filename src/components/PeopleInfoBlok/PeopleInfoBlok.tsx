@@ -40,7 +40,6 @@ export const PepleInfoBlok: React.FC = () => {
                 }
             });
         });
-        console.log(arr);
         dispatch(peopleDataSlice.actions.getQueryData(arr));
         return arr.items;
     };

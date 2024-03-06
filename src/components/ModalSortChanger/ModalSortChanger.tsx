@@ -14,7 +14,6 @@ export const ModalSortChanger: React.FC<IProps> = ({ children, activeType, type 
 
     const activateSorting = () => {
         if (!activeType) {
-            console.log(type);
             return dispatch(peopleDataSlice.actions.changeData(type));
         }
     };
