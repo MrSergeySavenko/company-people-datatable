@@ -103,5 +103,9 @@ export const PepleInfoBlok: React.FC = () => {
         });
     };
 
-    return <div className={styles.wrapper}>{peopleRender()}</div>;
+    return (
+        <div db-text='peple-info-block' className={styles.wrapper}>
+            {peopleRender()}
+        </div>
+    );
 };

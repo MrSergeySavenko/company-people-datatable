@@ -32,7 +32,7 @@ export const PeopleInfoItem: React.FC<IProps> = ({
     return (
         <div className={styles.contentWrapper} onClick={onClick}>
             {activeDateLine ? (
-                <div className={styles.dateLineWrapper}>
+                <div db-test='date-line-test' className={styles.dateLineWrapper}>
                     <div className={styles.dateLine} />
                     <p className={styles.dateText}>{realDate.getFullYear()}</p>
                     <div className={styles.dateLine} />
@@ -44,7 +44,7 @@ export const PeopleInfoItem: React.FC<IProps> = ({
                 <img className={styles.image} src={url} />
                 <div className={styles.textWrappper}>
                     <div className={styles.nameWrapper}>
-                        <p className={styles.text}>{`${firstName} ${lastName}`}</p>
+                        <p db-test='text' className={styles.text}>{`${firstName} ${lastName}`}</p>
                         <p className={styles.userTag}>{userTag}</p>
                     </div>
                     <p className={styles.underText}>{position}</p>

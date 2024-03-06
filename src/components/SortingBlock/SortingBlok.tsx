@@ -57,5 +57,9 @@ export const SortingBlock: React.FC = () => {
         getNoRepeatSorting();
     }, [sorting]);
 
-    return <div className={styles.wrapper}>{sortRender()}</div>;
+    return (
+        <div db-name='test-sort-block' className={styles.wrapper}>
+            {sortRender()}
+        </div>
+    );
 };

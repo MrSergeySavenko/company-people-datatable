@@ -29,14 +29,14 @@
         "start": "react-scripts start",
         "build": "react-scripts build",
         "test": "react-scripts test",
+        "cypress": "cypress open",
         "server": "json-server --watch src/__data__/db.json --port 8000",
         "eject": "react-scripts eject"
     },
     "eslintConfig": {
         "extends": [
             "react-app",
-            "react-app/jest",
-            "plugin:cypress/recommended"
+            "react-app/jest"
         ]
     },
     "browserslist": {

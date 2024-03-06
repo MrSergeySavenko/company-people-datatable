@@ -31,12 +31,15 @@ export const RouterDetails: React.FC = () => {
         <div className={styles.wrapper}>
             <div className={styles.topWrapper}>
                 <div className={styles.backButtWrapper}>
-                    <div className={styles.backButtImg} onClick={handleRouteMain} />
+                    <div db-test='back-butt-test' className={styles.backButtImg} onClick={handleRouteMain} />
                 </div>
                 <div className={styles.imgWrapper}>
                     <img className={styles.image} src={detailsItem?.avatarUrl} />
                     <div className={styles.nameWrapper}>
-                        <p className={styles.text}>{detailsItem?.firstName}</p>
+                        <p
+                            db-test='details-name-test'
+                            className={styles.text}
+                        >{`${detailsItem?.firstName} ${detailsItem?.lastName}`}</p>
                         <p className={styles.userTag}>{detailsItem?.userTag}</p>
                     </div>
                     <p className={styles.underText}>{detailsItem?.department}</p>

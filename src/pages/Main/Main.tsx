@@ -52,7 +52,7 @@ export const Main: React.FC = () => {
                 {isLoading ? (
                     Array(8)
                         .fill(0)
-                        .map((_, i: number) => <ItemSkeleton key={uniqueKey('name', i)} />)
+                        .map((_, i: number) => <ItemSkeleton db-name='skeleton' key={uniqueKey('name', i)} />)
                 ) : (
                     <PepleInfoBlok />
                 )}
