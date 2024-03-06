@@ -47,12 +47,12 @@ export const Main: React.FC = () => {
                 <TextAria>Поиск</TextAria>
                 <SerchBlock />
                 <SortingBlock />
-                {isError && <NotReceivedData />}
-                {queryData.length === 0 && <EmptyQueryData />}
+                {isError && !isLoading && <NotReceivedData />}
+                {queryData.length === 0 && !isError && !isLoading && <EmptyQueryData />}
                 {isLoading ? (
                     Array(8)
                         .fill(0)
-                        .map((_, i: number) => <ItemSkeleton key={uniqueKey('name', i)} />)
+                        .map((_, i: number) => <ItemSkeleton db-name='skeleton' key={uniqueKey('name', i)} />)
                 ) : (
                     <PepleInfoBlok />
                 )}

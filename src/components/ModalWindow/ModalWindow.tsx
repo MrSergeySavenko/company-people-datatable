@@ -24,6 +24,7 @@ export const ModalWindow: React.FC = () => {
 
     return (
         <div
+            db-test='modal-window-test'
             className={styles.allWrapper}
             onClick={() => dispatch(peopleDataSlice.actions.changeSortWindow())}
         >
@@ -31,11 +32,14 @@ export const ModalWindow: React.FC = () => {
                 <div className={styles.headerWrapper}>
                     <p className={styles.header}>Сортировка</p>
                     <button
+                        db-test='clos-butt'
                         className={styles.closeButton}
                         onClick={() => dispatch(peopleDataSlice.actions.changeSortWindow())}
                     />
                 </div>
-                <div className={styles.allSortingWrapper}>{renderTypeOfSorting()}</div>
+                <div db-test='all-sorting-wrapper' className={styles.allSortingWrapper}>
+                    {renderTypeOfSorting()}
+                </div>
             </div>
         </div>
     );

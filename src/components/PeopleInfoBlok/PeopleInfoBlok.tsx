@@ -40,7 +40,6 @@ export const PepleInfoBlok: React.FC = () => {
                 }
             });
         });
-        console.log(arr);
         dispatch(peopleDataSlice.actions.getQueryData(arr));
         return arr.items;
     };
@@ -103,5 +102,9 @@ export const PepleInfoBlok: React.FC = () => {
         });
     };
 
-    return <div className={styles.wrapper}>{peopleRender()}</div>;
+    return (
+        <div db-text='peple-info-block' className={styles.wrapper}>
+            {peopleRender()}
+        </div>
+    );
 };

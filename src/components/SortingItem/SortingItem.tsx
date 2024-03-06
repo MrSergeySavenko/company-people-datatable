@@ -21,7 +21,6 @@ export const SortingItem: React.FC<IProp> = ({ children, position, index, isActi
 
     const getSort = () => {
         if (inputQuery.length > 0) {
-            console.log('aboba', inputQuery);
             if (index === 0) {
                 dispatch(peopleDataSlice.actions.getSortData({ sortName: '', sortArray: queryData }));
             }
