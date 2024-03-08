@@ -58,8 +58,10 @@ export const SortingBlock: React.FC = () => {
     }, [sorting]);
 
     return (
-        <div db-name='test-sort-block' className={styles.wrapper}>
-            {sortRender()}
+        <div className={styles.borderWrapper}>
+            <div db-name='test-sort-block' className={styles.wrapper}>
+                {sortRender()}
+            </div>
         </div>
     );
 };

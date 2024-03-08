@@ -6,5 +6,9 @@ interface IProp {
 }
 
 export const TextAria: React.FC<IProp> = ({ children }) => {
-    return <p className={styles.header}>{children}</p>;
+    return (
+        <div className={styles.wrapper}>
+            <p className={styles.header}>{children}</p>
+        </div>
+    );
 };

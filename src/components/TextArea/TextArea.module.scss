@@ -1,3 +1,10 @@
+.wrapper {
+    width: 1280px;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+}
+
 .header {
     width: 76px;
     height: 28px;
