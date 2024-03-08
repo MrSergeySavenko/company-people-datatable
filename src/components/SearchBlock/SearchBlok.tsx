@@ -5,7 +5,7 @@ import { peopleDataSlice } from '../../__data__/store/reducers';
 import { RootState } from '../../__data__/store/store';
 
 export const SerchBlock: React.FC = () => {
-    const { window, inputQuery } = useSelector((state: RootState) => state.coPeopleData);
+    const { activeSorting } = useSelector((state: RootState) => state.coPeopleData);
 
     const [input, setInput] = useState('');
 
@@ -29,13 +29,22 @@ export const SerchBlock: React.FC = () => {
                 onChange={(e: any) => findPeple(e)}
                 placeholder='Введите тег, имя, почту...'
             />
-            <button
-                db-test='modal-butt-test'
-                className={styles.burgerMenu}
-                onClick={() => {
-                    dispatch(peopleDataSlice.actions.changeSortWindow());
-                }}
-            />
+            {activeSorting !== '' ? (
+                <button
+                    className={styles.activeBurgerMenu}
+                    onClick={() => {
+                        dispatch(peopleDataSlice.actions.changeSortWindow());
+                    }}
+                />
+            ) : (
+                <button
+                    db-test='modal-butt-test'
+                    className={styles.burgerMenu}
+                    onClick={() => {
+                        dispatch(peopleDataSlice.actions.changeSortWindow());
+                    }}
+                />
+            )}
         </div>
     );
 };

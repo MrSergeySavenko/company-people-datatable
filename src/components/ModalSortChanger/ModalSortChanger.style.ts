@@ -4,6 +4,7 @@ export const SSortWrapper = styled('div')(() => ({
     display: 'flex',
     flexDirection: 'row',
     marginBottom: '40px',
+    cursor: 'pointer',
 
     '&:last-child': {
         marginBottom: '0',

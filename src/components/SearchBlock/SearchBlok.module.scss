@@ -46,3 +46,13 @@
     border: none;
     cursor: pointer;
 }
+
+.activeBurgerMenu {
+    width: 20px;
+    height: 12px;
+    background-image: url('../../../public/ActiveButtBar.svg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    border: none;
+    cursor: pointer;
+}
