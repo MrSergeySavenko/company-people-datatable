@@ -13,11 +13,6 @@ export const renderDataAfterSort = (dataRender: TProp, activeSorting: string) =>
     return dataSample;
 };
 
-export const getMonth = (month: number) => {
-    const arrMonth = ['янв', 'фев', 'марта', 'апр', 'мая', 'июн', 'июл', 'авг', 'сен', 'окт', 'ноя', 'дек'];
-    return arrMonth[month];
-};
-
 export const delayFunc = (ms: number) => {
     return new Promise((resolve) => setTimeout(resolve, ms));
 };

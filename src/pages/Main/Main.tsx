@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import styles from './Main.module.scss';
 import { TextAria } from '../../components/TextArea/TextArea';
-import { SerchBlock } from '../../components/SearchBlock/SearchBlok';
+import { SerchBlock } from '../../components/SearchBlock/SearchBlock';
 import { SortingBlock } from '../../components/SortingBlock/SortingBlok';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchData } from '../../__data__/store/actions/actions';
@@ -23,23 +23,18 @@ export const Main: React.FC = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
-    const windowRender = () => {
+    useEffect(() => {
+        if (!data) {
+            navigate('/main');
+            dispatch(fetchData() as any);
+        }
+    }, []);
+
+    const renderModalWindow = () => {
         if (window) {
             return <ModalWindow />;
         }
     };
-
-    useEffect(() => {
-        if (!data) {
-            return navigate('/main');
-        }
-    }, []);
-
-    useEffect(() => {
-        if (!data) {
-            dispatch(fetchData() as any);
-        }
-    }, []);
 
     return (
         <SkeletonTheme baseColor='#f3f3f6' highlightColor='#fafafa'>
@@ -56,7 +51,7 @@ export const Main: React.FC = () => {
                 ) : (
                     <PepleInfoBlok />
                 )}
-                {windowRender()}
+                {renderModalWindow()}
             </div>
         </SkeletonTheme>
     );

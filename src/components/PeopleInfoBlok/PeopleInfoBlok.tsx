@@ -7,6 +7,7 @@ import styles from './PeopleInfoBlock.module.scss';
 import { peopleDataSlice } from '../../__data__/store/reducers';
 import { renderDataAfterSort, uniqueKey } from '../../__data__/utils/utils';
 import { useNavigate } from 'react-router-dom';
+import { findRightPerson, returnActualData } from './utils';
 
 export const PepleInfoBlok: React.FC = () => {
     const { data, sortData, inputQuery, queryData, activeSorting } = useSelector(
@@ -16,60 +17,28 @@ export const PepleInfoBlok: React.FC = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
+    useEffect(() => {
+        const newArr = findRightPerson(inputQuery, data);
+        dispatch(peopleDataSlice.actions.getQueryData(newArr));
+    }, [inputQuery]);
+
     const handleRouteMain = (item: IItemsData) => {
         dispatch(peopleDataSlice.actions.getDetailsItem(item));
         return navigate('/details');
     };
 
-    const findInObj = (query: string) => {
-        const arr: any = [];
-        let counter = 0;
-        data?.items.forEach((item: IItemsData) => {
-            counter = 1;
-            Object.values(item).map((strItem: string) => {
-                if (
-                    strItem !== ('true' || 'false') &&
-                    typeof strItem === 'string' &&
-                    strItem.length < 15 &&
-                    counter === 1
-                ) {
-                    if (strItem?.indexOf(query) !== -1 || undefined) {
-                        counter = 0;
-                        arr.push(item);
-                    }
-                }
-            });
-        });
-        dispatch(peopleDataSlice.actions.getQueryData(arr));
-        return arr.items;
-    };
-
-    useEffect(() => {
-        findInObj(inputQuery);
-    }, [inputQuery]);
-
-    const returnActualData = () => {
-        if (inputQuery.length > 0) {
-            if (sortData?.length !== 0 && sortData !== null) {
-                return sortData;
-            }
-            return queryData;
-        }
-        if (sortData?.length !== 0 && sortData !== null) {
-            return sortData;
-        }
-        if (data) {
-            return data.items;
-        }
-        return [];
-    };
-
-    const peopleRender = () => {
-        return renderDataAfterSort(returnActualData(), activeSorting)?.map((item: IItemsData, i: number) => {
+    const renderPeople = () => {
+        return renderDataAfterSort(
+            returnActualData(inputQuery, sortData, data, queryData),
+            activeSorting
+        )?.map((item: IItemsData, i: number) => {
             if (activeSorting === 'date' && i > 0) {
                 if (
                     item.birthday.slice(0, 4) <
-                    renderDataAfterSort(returnActualData(), activeSorting)[i - 1].birthday.slice(0, 4)
+                    renderDataAfterSort(
+                        returnActualData(inputQuery, sortData, data, queryData),
+                        activeSorting
+                    )[i - 1].birthday.slice(0, 4)
                 ) {
                     return (
                         <PeopleInfoItem
@@ -104,7 +73,7 @@ export const PepleInfoBlok: React.FC = () => {
 
     return (
         <div db-text='peple-info-block' className={styles.wrapper}>
-            {peopleRender()}
+            {renderPeople()}
         </div>
     );
 };

@@ -1,8 +1,8 @@
 import React from 'react';
 import styles from './PeopleInfoItem.module.scss';
-import { getMonth } from '../../__data__/utils/utils';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../__data__/store/store';
+import moment from 'moment';
 
 interface IProps {
     url: string;
@@ -27,14 +27,12 @@ export const PeopleInfoItem: React.FC<IProps> = ({
 }) => {
     const { activeSorting } = useSelector((state: RootState) => state.coPeopleData);
 
-    const realDate = new Date(date);
-
     return (
         <div className={styles.contentWrapper} onClick={onClick}>
             {activeDateLine ? (
                 <div db-test='date-line-test' className={styles.dateLineWrapper}>
                     <div className={styles.dateLine} />
-                    <p className={styles.dateText}>{realDate.getFullYear()}</p>
+                    <p className={styles.dateText}>{moment(date).year()}</p>
                     <div className={styles.dateLine} />
                 </div>
             ) : (
@@ -50,8 +48,8 @@ export const PeopleInfoItem: React.FC<IProps> = ({
                     <p className={styles.underText}>{position}</p>
                 </div>
                 {activeSorting === 'date' ? (
-                    <p className={styles.dateWrapper}>{`${String(realDate.getDate())} ${String(
-                        getMonth(realDate.getMonth())
+                    <p className={styles.dateWrapper}>{`${String(moment(date).format('D'))} ${String(
+                        moment(date).format('MMM').slice(0, -1)
                     )}`}</p>
                 ) : (
                     <></>
