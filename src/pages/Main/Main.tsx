@@ -14,6 +14,7 @@ import { useNavigate } from 'react-router-dom';
 import { NotReceivedData } from '../../components/ErrorComponent/NotReceivedData/NotReceivedData';
 import { EmptyQueryData } from '../../components/ErrorComponent/EmptyQueryData/EmptyQueryData';
 import { uniqueKey } from '../../__data__/utils/utils';
+import { createPortal } from 'react-dom';
 
 export const Main: React.FC = () => {
     const { window, isLoading, data, isError, queryData } = useSelector(
@@ -30,12 +31,6 @@ export const Main: React.FC = () => {
         }
     }, []);
 
-    const renderModalWindow = () => {
-        if (window) {
-            return <ModalWindow />;
-        }
-    };
-
     return (
         <SkeletonTheme baseColor='#f3f3f6' highlightColor='#fafafa'>
             <div className={styles.wrapper}>
@@ -51,7 +46,7 @@ export const Main: React.FC = () => {
                 ) : (
                     <PepleInfoBlok />
                 )}
-                {renderModalWindow()}
+                <ModalWindow />
             </div>
         </SkeletonTheme>
     );

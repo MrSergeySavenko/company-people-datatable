@@ -1,8 +1,11 @@
 .allWrapper {
-    position: absolute;
+    position: fixed;
+    top: 0;
+    left: 0;
     width: 100vw;
     height: 100vh;
     background-color: rgba(5, 5, 16, 0.16);
+    z-index: 11;
 }
 
 .wrapper {
