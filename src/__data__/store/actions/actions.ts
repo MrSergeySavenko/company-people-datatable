@@ -13,7 +13,7 @@ export const fetchData = () => async (dispatch: AppDispatch) => {
         const response = await fetch(url);
         const data: IData = await response.json();
 
-        await delayFunc(5000);
+        // await delayFunc(5000);
 
         if (response) {
             dispatch(peopleDataSlice.actions.dataFetchSuccess(data));

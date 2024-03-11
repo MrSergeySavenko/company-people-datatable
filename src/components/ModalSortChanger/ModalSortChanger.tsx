@@ -12,14 +12,14 @@ interface IProps {
 export const ModalSortChanger: React.FC<IProps> = ({ children, activeType, type }) => {
     const dispatch = useDispatch();
 
-    const activateSorting = () => {
+    const handleActivateSorting = () => {
         if (!activeType) {
             return dispatch(peopleDataSlice.actions.changeData(type));
         }
     };
 
     return (
-        <SSortWrapper onClick={activateSorting}>
+        <SSortWrapper onClick={handleActivateSorting}>
             <SCercalWrapper>
                 <SCercal activeType={activeType} />
                 <SHidenCercal activeType={activeType} />

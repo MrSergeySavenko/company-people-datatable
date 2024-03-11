@@ -19,7 +19,14 @@ export const SortingItem: React.FC<IProp> = ({ children, position, index, isActi
 
     const dispatch = useDispatch();
 
-    const getSort = () => {
+    useEffect(() => {
+        if (data) {
+            dispatch(peopleDataSlice.actions.getSortingItem(data.items));
+            renderDataAfterSort(data.items, activeSorting);
+        }
+    }, [data]);
+
+    const handleGetSort = () => {
         if (inputQuery.length > 0) {
             if (index === 0) {
                 dispatch(peopleDataSlice.actions.getSortData({ sortName: '', sortArray: queryData }));
@@ -34,15 +41,8 @@ export const SortingItem: React.FC<IProp> = ({ children, position, index, isActi
         }
     };
 
-    useEffect(() => {
-        if (data) {
-            dispatch(peopleDataSlice.actions.getSortingItem(data.items));
-            renderDataAfterSort(data.items, activeSorting);
-        }
-    }, [data]);
-
     return (
-        <SSortingWrapper isActive={isActive} onClick={getSort}>
+        <SSortingWrapper isActive={isActive} onClick={handleGetSort}>
             {children}
         </SSortingWrapper>
     );

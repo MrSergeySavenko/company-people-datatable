@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import styles from './Main.module.scss';
 import { TextAria } from '../../components/TextArea/TextArea';
-import { SerchBlock } from '../../components/SearchBlock/SearchBlok';
+import { SerchBlock } from '../../components/SearchBlock/SearchBlock';
 import { SortingBlock } from '../../components/SortingBlock/SortingBlok';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchData } from '../../__data__/store/actions/actions';
@@ -14,6 +14,7 @@ import { useNavigate } from 'react-router-dom';
 import { NotReceivedData } from '../../components/ErrorComponent/NotReceivedData/NotReceivedData';
 import { EmptyQueryData } from '../../components/ErrorComponent/EmptyQueryData/EmptyQueryData';
 import { uniqueKey } from '../../__data__/utils/utils';
+import { createPortal } from 'react-dom';
 
 export const Main: React.FC = () => {
     const { window, isLoading, data, isError, queryData } = useSelector(
@@ -23,20 +24,9 @@ export const Main: React.FC = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
-    const windowRender = () => {
-        if (window) {
-            return <ModalWindow />;
-        }
-    };
-
     useEffect(() => {
         if (!data) {
-            return navigate('/main');
-        }
-    }, []);
-
-    useEffect(() => {
-        if (!data) {
+            navigate('/main');
             dispatch(fetchData() as any);
         }
     }, []);
@@ -56,7 +46,7 @@ export const Main: React.FC = () => {
                 ) : (
                     <PepleInfoBlok />
                 )}
-                {windowRender()}
+                <ModalWindow />
             </div>
         </SkeletonTheme>
     );

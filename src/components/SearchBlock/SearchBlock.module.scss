@@ -21,6 +21,15 @@
     background-repeat: no-repeat;
 }
 
+.activeSerch {
+    width: 20px;
+    height: 20px;
+    margin-right: 10px;
+    background-image: url('../../../public/ActiveLoop.svg');
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
 .input {
     width: 1158px;
     background-color: rgb(247, 247, 248);
@@ -31,6 +40,7 @@
     margin-right: 10px;
     border: none;
     outline: none;
+    caret-color: rgb(101, 52, 255);
 
     &::placeholder {
         color: rgb(195, 195, 198);
@@ -41,6 +51,16 @@
     width: 20px;
     height: 12px;
     background-image: url('../../../public/BurgerMenu.svg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    border: none;
+    cursor: pointer;
+}
+
+.activeBurgerMenu {
+    width: 20px;
+    height: 12px;
+    background-image: url('../../../public/ActiveButtBar.svg');
     background-size: cover;
     background-repeat: no-repeat;
     border: none;
